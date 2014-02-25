@@ -1,7 +1,7 @@
 Understanding a Tox ID
 ========================
 
-A Tox ID you distribute is a public key, nospam value, and checksum; in hexadecimal format. This results in 32 characters + 8 characters + 4 characters, for 48.
+A Tox ID you distribute is a public key, nospam value, and checksum; in hexadecimal format. This results in 64 characters + 8 characters + 4 characters, for 76.
 
 So something like 
 
