@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to Project Tox’s documentation! &mdash; Project Tox HEAD documentation</title>
+    <title>Welcome to the Tox API documentation! &mdash; Project Tox HEAD documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -41,20 +41,96 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-project-tox-s-documentation">
-<h1>Welcome to Project Tox&#8217;s documentation!<a class="headerlink" href="#welcome-to-project-tox-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
+  <div class="section" id="welcome-to-the-tox-api-documentation">
+<h1>Welcome to the Tox API documentation!<a class="headerlink" href="#welcome-to-the-tox-api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Welcome!
+The Tox Docs project seeks to document the the toxcore library and and bindings, for future generations of developers.</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="pubkey.html">Understanding a Tox ID</a></p>
+</div>
+<div class="section" id="tutorials">
+<h1>tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="api-reference">
+<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+<li>tox_get_address</li>
+<li>tox_add_friend</li>
+<li>tox_add_friend_norequest</li>
+<li>tox_get_client_id</li>
+<li>tox_del_friend</li>
+<li>tox_get_friend_connection_status</li>
+<li>tox_friend_exists</li>
+<li>tox_send_message</li>
+<li>tox_send_message_withid</li>
+<li>tox_send_action</li>
+<li>tox_send_action_withid</li>
+<li>tox_set_name</li>
+<li>tox_get_self_name</li>
+<li>tox_get_name</li>
+<li>tox_set_status_message</li>
+<li>tox_set_user_status</li>
+<li>tox_get_status_message_size</li>
+<li>tox_get_status_message</li>
+<li>tox_get_self_status_message</li>
+<li>TOX_USERSTATUS tox_get_user_status</li>
+<li>TOX_USERSTATUS tox_get_self_user_status</li>
+<li>tox_set_user_is_typing</li>
+<li>tox_get_is_typing</li>
+<li>tox_set_sends_receipts</li>
+<li>tox_count_friendlist</li>
+<li>tox_get_num_online_friends</li>
+<li>tox_get_friendlist</li>
+<li>tox_callback_friend_request</li>
+<li>tox_callback_friend_message</li>
+<li>tox_callback_friend_action</li>
+<li>tox_callback_name_change</li>
+<li>tox_callback_status_message</li>
+<li>tox_callback_user_status</li>
+<li>tox_callback_typing_change</li>
+<li>tox_callback_read_receipt</li>
+<li>tox_callback_connection_status</li>
+<li>tox_callback_group_invite</li>
+<li>tox_callback_group_message</li>
+<li>tox_callback_group_action</li>
+<li>tox_callback_group_namelist_change</li>
+<li>tox_add_groupchat</li>
+<li>tox_del_groupchat</li>
+<li>tox_group_peername</li>
+<li>tox_invite_friend</li>
+<li>tox_join_groupchat</li>
+<li>tox_group_message_send</li>
+<li>tox_group_action_sent</li>
+<li>tox_group_number_peers</li>
+<li>tox_group_get_names</li>
+<li>tox_count_chatlist</li>
+<li>tox_get_chatlist</li>
+<li>tox_callback_file_send_request</li>
+<li>tox_callback_file_control</li>
+<li>tox_callback_file_data</li>
+<li>tox_new_file_sender</li>
+<li>tox_file_send_control</li>
+<li>tox_file_send_data</li>
+<li>tox_file_data_size</li>
+<li>tox_file_data_remaining</li>
+<li>tox_bootstrap_from_ip</li>
+<li>tox_bootstrap_from_address</li>
+<li>tox_isconnected</li>
+<li><a href="#id1"><span class="problematic" id="id2">*</span></a>tox_new</li>
+<li>tox_kill</li>
+<li>tox_do</li>
+<li>tox_size</li>
+<li>tox_save</li>
+<li>tox_load</li>
+<li>tox_size_encrypted</li>
+<li>tox_save_encrypted</li>
+<li>tox_load_encrypted</li>
 </ul>
 </div>
 
@@ -66,8 +142,10 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Project Tox&#8217;s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">Welcome to the Tox API documentation!</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#tutorials">tutorials</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a></li>
 </ul>
 
   <h3>This Page</h3>
