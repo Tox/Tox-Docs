@@ -45,8 +45,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Project Tox'
-copyright = u'2014, Tox Docs'
+project = u'Tox API'
+copyright = u'2014 Project Tox'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -119,7 +119,7 @@ html_theme = 'default'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = "_static/logo.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -179,6 +179,14 @@ html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ProjectToxdoc'
+
+html_theme = "default"
+html_theme_options = {
+    "relbarbgcolor": "#4B5F6D",
+    "sidebarbgcolor": "#5E7C88",
+    "sidebartextcolor": "#FEB41C",
+    "sidebarlinkcolor": "white"
+}
 
 
 # -- Options for LaTeX output ---------------------------------------------

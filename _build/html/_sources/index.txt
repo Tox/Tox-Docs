@@ -3,25 +3,33 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Tox API documentation!
-=======================================
+Welcome to the Tox developer documentation!
+===========================================
+This is the API for Tox, a secure and decentralized messaging network.
 
-Welcome!
-The Tox Docs project seeks to document the the toxcore library and and bindings, for future generations of developers.
+Who should read this documentation?
+-----------------------------------
+This documentation is intended for **developers** who want to make
+applications based on the Tox messenger core. If you just want to use
+Tox, downloads of clients are available
+`on the main site <http://wiki.tox.im/Binaries>`_.
 
+With that out of the way, let's dive in!
+
+Table of Contents
+-----------------
 .. toctree::
    :maxdepth: 2
+   
+   core_concepts
+   developing_with_tox
+   getting_started_in_c
 
+Tutorials and Examples
+----------------------
 
-Getting started
-==================
-`Understanding a Tox ID <pubkey.html>`_
-
-tutorials
-==================
-
-API reference
-==================
+Full API reference
+------------------
 
 * tox_get_address
 * tox_add_friend
@@ -42,8 +50,8 @@ API reference
 * tox_get_status_message_size
 * tox_get_status_message
 * tox_get_self_status_message
-* TOX_USERSTATUS tox_get_user_status
-* TOX_USERSTATUS tox_get_self_user_status
+* tox_get_user_status
+* tox_get_self_user_status
 * tox_set_user_is_typing
 * tox_get_is_typing
 * tox_set_sends_receipts
@@ -85,7 +93,7 @@ API reference
 * tox_bootstrap_from_ip
 * tox_bootstrap_from_address
 * tox_isconnected
-* *tox_new
+* tox_new
 * tox_kill
 * tox_do
 * tox_size
