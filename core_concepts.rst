@@ -22,10 +22,10 @@ shown above.
 Public Key
 ^^^^^^^^^^
 The public key is generated from the ``crypto_box_keypair`` function
-by NaCL.
+by NaCl.
 
 This is explained better `here <http://nacl.cr.yp.to/box.html>`__.
-In the current implementation of NaCL, it is 32 bytes (64 hexadecimal
+In the current implementation of NaCl, it is 32 bytes (64 hexadecimal
 characters).
 
 ``nospam`` Value
