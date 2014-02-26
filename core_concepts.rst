@@ -59,15 +59,6 @@ The Tox core handles this in one of two ways:
 * Bootstrapping to a known peer that your code provides.
 
 .. note::
-   It is generally *not* a good idea to hardcode a bootstrap
-   node as shown in the example code. There, it is hardcoded
-   for brevity only.
-
-Luckily for us, there is a list of well-known public Tox clients
-you can bootstrap against on the Tox wiki:
-http://wiki.tox.im/Nodes.
-
-.. note::
    If you would like that data in a more machine-friendly
    format, an unofficial JSON list is available
    `here <https://kirara.ca/poison/Nodefile.json>`__,

@@ -68,7 +68,6 @@ Getting Into The Network
 
 The C API provides two functions for dealing with bootstrapping.
 
-* :ref:`api/tox_bootstrap_from_ip`
 * :ref:`api/tox_bootstrap_from_address`
 
 You should call one of these as soon as you are finished preparing
@@ -153,7 +152,7 @@ Getting Ready
 ``tox_wait_execute()`` requires a buffer to perform its work.
 We use the ``tox_wait_prepare()`` function to get the required
 buffer size, which will be returned in ``rtmp``. Then, we just
-``malloc(3)`` the right size.
+``malloc(rtmp)`` the right size.
 
 Doing The Work
 ^^^^^^^^^^^^^^
@@ -166,7 +165,7 @@ Doing The Work
     tox_do(my_tox);
 
 ``tox_wait_execute()`` will block until you need to call
-``tox_do()``, or the timeout is reached (we used 99 milliseconds
+``tox_do()``, or the timeout is reached (we used 999 milliseconds
 in the example). Generally, you should call ``tox_do()`` anyway
 if the timeout is reached.
 
