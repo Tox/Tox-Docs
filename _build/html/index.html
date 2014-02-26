@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to the Tox API documentation! &mdash; Project Tox HEAD documentation</title>
+    <title>Welcome to the Tox developer documentation! &mdash; Tox API HEAD documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Project Tox HEAD documentation" href="#" /> 
+    <link rel="top" title="Tox API HEAD documentation" href="#" />
+    <link rel="next" title="Core concepts" href="core_concepts.html" /> 
   </head>
   <body>
     <div class="related">
@@ -32,7 +33,10 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">Project Tox HEAD documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="core_concepts.html" title="Core concepts"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">Tox API HEAD documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -41,24 +45,48 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-the-tox-api-documentation">
-<h1>Welcome to the Tox API documentation!<a class="headerlink" href="#welcome-to-the-tox-api-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Welcome!
-The Tox Docs project seeks to document the the toxcore library and and bindings, for future generations of developers.</p>
+  <div class="section" id="welcome-to-the-tox-developer-documentation">
+<h1>Welcome to the Tox developer documentation!<a class="headerlink" href="#welcome-to-the-tox-developer-documentation" title="Permalink to this headline">¶</a></h1>
+<p>This is the API for Tox, a secure and decentralized messaging network.</p>
+<div class="section" id="who-should-read-this-documentation">
+<h2>Who should read this documentation?<a class="headerlink" href="#who-should-read-this-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This documentation is intended for <strong>developers</strong> who want to make
+applications based on the Tox messenger core. If you just want to use
+Tox, downloads of clients are available
+<a class="reference external" href="http://wiki.tox.im/Binaries">on the main site</a>.</p>
+<p>With that out of the way, let&#8217;s dive in!</p>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
-<ul class="simple">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_concepts.html">Core concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_concepts.html#the-tox-id">The Tox ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_concepts.html#up-by-the-bootstraps">Up By The Bootstraps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developing_with_tox.html">Developing With Tox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developing_with_tox.html#c-is-for-core">&#8220;C&#8221; Is For Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_with_tox.html#like-an-ogre-tox-has-many-wrappers">Like An Ogre, Tox Has Many [Wrappers]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developing_with_tox.html#you-re-seriously-going-to-write-c-then">You&#8217;re Seriously Going To Write C, Then</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_in_c.html">Getting Started With The C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_in_c.html#name-and-identification">Name And Identification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_in_c.html#getting-into-the-network">Getting Into The Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_in_c.html#let-s-tox-do-it">Let&#8217;s <tt class="docutils literal"><span class="pre">tox_do()</span></tt> It</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_in_c.html#call-me-back-maybe">Call Me [Back] Maybe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_in_c.html#wait-for-events-to-come-to-you">Wait For Events To Come To You</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div class="section" id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="pubkey.html">Understanding a Tox ID</a></p>
+<div class="section" id="tutorials-and-examples">
+<h2>Tutorials and Examples<a class="headerlink" href="#tutorials-and-examples" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="tutorials">
-<h1>tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="api-reference">
-<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="full-api-reference">
+<h2>Full API reference<a class="headerlink" href="#full-api-reference" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>tox_get_address</li>
 <li>tox_add_friend</li>
@@ -79,8 +107,8 @@ The Tox Docs project seeks to document the the toxcore library and and bindings,
 <li>tox_get_status_message_size</li>
 <li>tox_get_status_message</li>
 <li>tox_get_self_status_message</li>
-<li>TOX_USERSTATUS tox_get_user_status</li>
-<li>TOX_USERSTATUS tox_get_self_user_status</li>
+<li>tox_get_user_status</li>
+<li>tox_get_self_user_status</li>
 <li>tox_set_user_is_typing</li>
 <li>tox_get_is_typing</li>
 <li>tox_set_sends_receipts</li>
@@ -122,7 +150,7 @@ The Tox Docs project seeks to document the the toxcore library and and bindings,
 <li>tox_bootstrap_from_ip</li>
 <li>tox_bootstrap_from_address</li>
 <li>tox_isconnected</li>
-<li><a href="#id1"><span class="problematic" id="id2">*</span></a>tox_new</li>
+<li>tox_new</li>
 <li>tox_kill</li>
 <li>tox_do</li>
 <li>tox_size</li>
@@ -133,6 +161,7 @@ The Tox Docs project seeks to document the the toxcore library and and bindings,
 <li>tox_load_encrypted</li>
 </ul>
 </div>
+</div>
 
 
           </div>
@@ -140,14 +169,23 @@ The Tox Docs project seeks to document the the toxcore library and and bindings,
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to the Tox API documentation!</a></li>
-<li><a class="reference internal" href="#getting-started">Getting started</a></li>
-<li><a class="reference internal" href="#tutorials">tutorials</a></li>
-<li><a class="reference internal" href="#api-reference">API reference</a></li>
+<li><a class="reference internal" href="#">Welcome to the Tox developer documentation!</a><ul>
+<li><a class="reference internal" href="#who-should-read-this-documentation">Who should read this documentation?</a></li>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#tutorials-and-examples">Tutorials and Examples</a></li>
+<li><a class="reference internal" href="#full-api-reference">Full API reference</a></li>
+</ul>
+</li>
 </ul>
 
+  <h4>Next topic</h4>
+  <p class="topless"><a href="core_concepts.html"
+                        title="next chapter">Core concepts</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -176,11 +214,14 @@ The Tox Docs project seeks to document the the toxcore library and and bindings,
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">Project Tox HEAD documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="core_concepts.html" title="Core concepts"
+             >next</a> |</li>
+        <li><a href="#">Tox API HEAD documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, Tox Docs.
+        &copy; Copyright 2014 Project Tox.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
     </div>
   </body>

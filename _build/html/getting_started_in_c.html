@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started With The C API &mdash; Tox API HEAD documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'HEAD',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Tox API HEAD documentation" href="index.html" />
+    <link rel="prev" title="Developing With Tox" href="developing_with_tox.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="developing_with_tox.html" title="Developing With Tox"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Tox API HEAD documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started-with-the-c-api">
+<span id="getting-started-in-c-getting-started-with-the-c-api"></span><h1>Getting Started With The C API<a class="headerlink" href="#getting-started-with-the-c-api" title="Permalink to this headline">¶</a></h1>
+<p>The central flow of a Tox client application goes basically like this
+(highly simplified)</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define SLEEP_TIME 50000</span>
+<span class="cp">#define BOOTSTRAP_ADDRESS &quot;23.226.230.47&quot;</span>
+<span class="cp">#define BOOTSTRAP_PORT 33445</span>
+<span class="cp">#define BOOTSTRAP_KEY &quot;A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074&quot;</span>
+
+<span class="cp">#define MY_NAME &quot;ImoutoBot&quot;</span>
+
+<span class="kt">void</span> <span class="nf">hex_string_to_bin</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">out</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">pub_key</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">TOX_CLIENT_ID_SIZE</span><span class="p">);</span>
+    <span class="n">hex_string_to_bin</span><span class="p">(</span><span class="n">BOOTSTRAP_KEY</span><span class="p">,</span> <span class="n">pub_key</span><span class="p">);</span>
+
+    <span class="n">Tox</span> <span class="o">*</span><span class="n">my_tox</span> <span class="o">=</span> <span class="n">tox_new</span><span class="p">(</span><span class="n">TOX_ENABLE_IPV6_DEFAULT</span><span class="p">);</span>
+    <span class="n">tox_set_name</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">MY_NAME</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">MY_NAME</span><span class="p">));</span>
+    <span class="p">...</span>
+    <span class="n">tox_bootstrap_from_address</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">BOOTSTRAP_ADDRESS</span><span class="p">,</span> <span class="n">TOX_ENABLE_IPV6_DEFAULT</span><span class="p">,</span> <span class="n">BOOTSTRAP_PORT</span><span class="p">,</span> <span class="n">pub_key</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tox_do</span><span class="p">(</span><span class="n">my_tox</span><span class="p">);</span>
+        <span class="p">...</span>
+        <span class="n">usleep</span><span class="p">(</span><span class="n">SLEEP_TIME</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="n">tox_kill</span><span class="p">(</span><span class="n">my_tox</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="name-and-identification">
+<span id="getting-started-in-c-getting-into-the-network"></span><h2>Name And Identification<a class="headerlink" href="#name-and-identification" title="Permalink to this headline">¶</a></h2>
+<p>The first thing your client needs is a name. (<em>The Tox developers
+recommend names referencing harmful substances, such as Toxic,
+Poison, Venom, etc.</em>)</p>
+<p>But we&#8217;re not talking that kind of name. We&#8217;re talking about your
+Tox name, which gets shown to your friends and in group chats.</p>
+<p>You can, of course, set your name using the API function
+<em class="xref std std-ref">api/tox_set_name</em>.</p>
+<p>You can also set your user status. This shows your friends what
+you are up to, and if you are busy, away, or available.</p>
+<p>The API for doing this is broken into two functions,
+<em class="xref std std-ref">api/tox_set_status_message</em> and <em class="xref std std-ref">api/tox_set_user_status</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This was not shown in the sample code above.</p>
+</div>
+</div>
+<div class="section" id="getting-into-the-network">
+<h2>Getting Into The Network<a class="headerlink" href="#getting-into-the-network" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should read <a class="reference internal" href="core_concepts.html#core-concepts-up-by-the-bootstraps"><em>Up By The Bootstraps</em></a> to
+learn more about bootstrapping.</p>
+</div>
+<p>The C API provides two functions for dealing with bootstrapping.</p>
+<ul class="simple">
+<li><em class="xref std std-ref">api/tox_bootstrap_from_ip</em></li>
+<li><em class="xref std std-ref">api/tox_bootstrap_from_address</em></li>
+</ul>
+<p>You should call one of these as soon as you are finished preparing
+your <tt class="docutils literal"><span class="pre">Tox</span> <span class="pre">*</span></tt> object.</p>
+</div>
+<div class="section" id="let-s-tox-do-it">
+<span id="getting-started-in-c-lets-tox-do-it"></span><h2>Let&#8217;s <tt class="docutils literal"><span class="pre">tox_do()</span></tt> It<a class="headerlink" href="#let-s-tox-do-it" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">tox_do()</span></tt> function is the centre point of the Tox API.
+It encapsulates everything that is needed to retain a connection
+to the network in one function call.</p>
+<p>Your main loop must call <tt class="docutils literal"><span class="pre">tox_do()</span></tt> at least 20 times per second.
+In turn, <tt class="docutils literal"><span class="pre">tox_do()</span></tt> will invoke your registered callbacks.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is rather inefficient, especially on low-power systems
+such as smartphones. For a more efficient way of running
+<tt class="docutils literal"><span class="pre">tox_do()</span></tt>, see <a class="reference internal" href="#getting-started-in-c-patience-is-a-virtue"><em>Wait For Events To Come To You</em></a>.</p>
+</div>
+</div>
+<div class="section" id="call-me-back-maybe">
+<span id="getting-started-in-c-call-me-back-maybe"></span><h2>Call Me [Back] Maybe<a class="headerlink" href="#call-me-back-maybe" title="Permalink to this headline">¶</a></h2>
+<div class="figure">
+<img alt="The circle of life." src="_images/tox_loop.png" />
+</div>
+<p>When important events happen on the Tox connection, tox_do will
+invoke callbacks that you specify with the following API
+functions.</p>
+<ul class="simple">
+<li><em class="xref std std-ref">api/tox_callback_friend_request</em></li>
+<li><em class="xref std std-ref">api/tox_callback_friend_message</em></li>
+<li><em class="xref std std-ref">api/tox_callback_friend_action</em></li>
+<li><em class="xref std std-ref">api/tox_callback_name_change</em></li>
+<li><em class="xref std std-ref">api/tox_callback_status_message</em></li>
+<li><em class="xref std std-ref">api/tox_callback_user_status</em></li>
+<li><em class="xref std std-ref">api/tox_callback_typing_change</em></li>
+<li><em class="xref std std-ref">api/tox_callback_read_receipt</em></li>
+<li><em class="xref std std-ref">api/tox_callback_connection_status</em></li>
+<li><em class="xref std std-ref">api/tox_callback_group_invite</em></li>
+<li><em class="xref std std-ref">api/tox_callback_group_message</em></li>
+<li><em class="xref std std-ref">api/tox_callback_group_action</em></li>
+<li><em class="xref std std-ref">api/tox_callback_group_namelist_change</em></li>
+<li><em class="xref std std-ref">api/tox_callback_file_send_request</em></li>
+<li><em class="xref std std-ref">api/tox_callback_file_control</em></li>
+<li><em class="xref std std-ref">api/tox_callback_file_data</em></li>
+</ul>
+<p>(<em>Click on a setter function above to see the required function
+signature of your callback function.</em>)</p>
+<p>Phew, that was a lot of functions! Don&#8217;t worry, you only have
+to set callbacks for the events you want to receive.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This was not shown in the sample code above.</p>
+</div>
+</div>
+<div class="section" id="wait-for-events-to-come-to-you">
+<span id="getting-started-in-c-patience-is-a-virtue"></span><h2>Wait For Events To Come To You<a class="headerlink" href="#wait-for-events-to-come-to-you" title="Permalink to this headline">¶</a></h2>
+<p>I said earlier that calling <tt class="docutils literal"><span class="pre">tox_do()</span></tt> 20 times per second
+was inefficient. You really don&#8217;t have to call it that many
+times per second, but what if something important happened?
+This is what <tt class="docutils literal"><span class="pre">tox_wait...</span></tt> was designed to fix. It works
+like POSIX <tt class="docutils literal"><span class="pre">select(2)</span></tt>, so you can wait for something to
+happen on the Tox connection rather than poll for it.</p>
+<ul class="simple">
+<li><em class="xref std std-ref">api/tox_wait_prepare</em></li>
+<li><em class="xref std std-ref">api/tox_wait_execute</em></li>
+<li><em class="xref std std-ref">api/tox_wait_cleanup</em></li>
+</ul>
+<div class="section" id="getting-ready">
+<h3>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">uint16_t</span> <span class="n">rtmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">tox_wait_prepare</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rtmp</span><span class="p">);</span>
+<span class="kt">uint8_t</span> <span class="n">tox_wait_buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">rtmp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">tox_wait_execute()</span></tt> requires a buffer to perform its work.
+We use the <tt class="docutils literal"><span class="pre">tox_wait_prepare()</span></tt> function to get the required
+buffer size, which will be returned in <tt class="docutils literal"><span class="pre">rtmp</span></tt>. Then, we just
+<tt class="docutils literal"><span class="pre">malloc(3)</span></tt> the right size.</p>
+</div>
+<div class="section" id="doing-the-work">
+<h3>Doing The Work<a class="headerlink" href="#doing-the-work" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">tox_wait_execute</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">tox_wait_buffer</span><span class="p">,</span> <span class="n">rtmp</span><span class="p">,</span> <span class="mi">999</span><span class="p">);</span>
+<span class="n">tox_wait_cleanup</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">tox_wait_buffer</span><span class="p">,</span> <span class="n">rtmp</span><span class="p">);</span>
+<span class="n">free</span><span class="p">(</span><span class="n">tox_wait_buffer</span><span class="p">);</span>
+<span class="n">tox_do</span><span class="p">(</span><span class="n">my_tox</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">tox_wait_execute()</span></tt> will block until you need to call
+<tt class="docutils literal"><span class="pre">tox_do()</span></tt>, or the timeout is reached (we used 99 milliseconds
+in the example). Generally, you should call <tt class="docutils literal"><span class="pre">tox_do()</span></tt> anyway
+if the timeout is reached.</p>
+<p>After calling <tt class="docutils literal"><span class="pre">tox_wait_execute()</span></tt>, we need to call
+<tt class="docutils literal"><span class="pre">tox_wait_cleanup()</span></tt> with the same arguments, except
+timeout. The buffer we allocated earlier is no longer needed, so
+it should be freed.</p>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<p>Here is our example program again, but using <tt class="docutils literal"><span class="pre">tox_wait...</span></tt>
+instead of a naïve loop.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define SLEEP_TIME 50000</span>
+<span class="cp">#define BOOTSTRAP_ADDRESS &quot;23.226.230.47&quot;</span>
+<span class="cp">#define BOOTSTRAP_PORT 33445</span>
+<span class="cp">#define BOOTSTRAP_KEY &quot;A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074&quot;</span>
+
+<span class="cp">#define MY_NAME &quot;ImoutoBot&quot;</span>
+
+<span class="kt">void</span> <span class="nf">hex_string_to_bin</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">out</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">pub_key</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">TOX_CLIENT_ID_SIZE</span><span class="p">);</span>
+    <span class="n">hex_string_to_bin</span><span class="p">(</span><span class="n">BOOTSTRAP_KEY</span><span class="p">,</span> <span class="n">pub_key</span><span class="p">);</span>
+
+    <span class="n">Tox</span> <span class="o">*</span><span class="n">my_tox</span> <span class="o">=</span> <span class="n">tox_new</span><span class="p">(</span><span class="n">TOX_ENABLE_IPV6_DEFAULT</span><span class="p">);</span>
+    <span class="n">tox_set_name</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">MY_NAME</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">MY_NAME</span><span class="p">));</span>
+    <span class="p">...</span>
+    <span class="n">tox_bootstrap_from_address</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">BOOTSTRAP_ADDRESS</span><span class="p">,</span> <span class="n">TOX_ENABLE_IPV6_DEFAULT</span><span class="p">,</span> <span class="n">BOOTSTRAP_PORT</span><span class="p">,</span> <span class="n">pub_key</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">uint16_t</span> <span class="n">rtmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">tox_wait_prepare</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rtmp</span><span class="p">);</span>
+        <span class="kt">uint8_t</span> <span class="n">tox_wait_buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">rtmp</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">tox_wait_execute</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">tox_wait_buffer</span><span class="p">,</span> <span class="n">rtmp</span><span class="p">,</span> <span class="mi">999</span><span class="p">);</span>
+        <span class="n">tox_wait_cleanup</span><span class="p">(</span><span class="n">my_tox</span><span class="p">,</span> <span class="n">tox_wait_buffer</span><span class="p">,</span> <span class="n">rtmp</span><span class="p">);</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">tox_wait_buffer</span><span class="p">);</span>
+
+        <span class="n">tox_do</span><span class="p">(</span><span class="n">my_tox</span><span class="p">);</span>
+        <span class="p">...</span>
+        <span class="n">usleep</span><span class="p">(</span><span class="n">SLEEP_TIME</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="n">tox_kill</span><span class="p">(</span><span class="n">my_tox</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We don&#8217;t actually need to allocate a new buffer every time we
+call <tt class="docutils literal"><span class="pre">tox_wait_execute()</span></tt>. Can you make the example code
+reuse a single buffer?</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started With The C API</a><ul>
+<li><a class="reference internal" href="#name-and-identification">Name And Identification</a></li>
+<li><a class="reference internal" href="#getting-into-the-network">Getting Into The Network</a></li>
+<li><a class="reference internal" href="#let-s-tox-do-it">Let&#8217;s <tt class="docutils literal"><span class="pre">tox_do()</span></tt> It</a></li>
+<li><a class="reference internal" href="#call-me-back-maybe">Call Me [Back] Maybe</a></li>
+<li><a class="reference internal" href="#wait-for-events-to-come-to-you">Wait For Events To Come To You</a><ul>
+<li><a class="reference internal" href="#getting-ready">Getting Ready</a></li>
+<li><a class="reference internal" href="#doing-the-work">Doing The Work</a></li>
+<li><a class="reference internal" href="#putting-it-all-together">Putting It All Together</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="developing_with_tox.html"
+                        title="previous chapter">Developing With Tox</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/getting_started_in_c.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="developing_with_tox.html" title="Developing With Tox"
+             >previous</a> |</li>
+        <li><a href="index.html">Tox API HEAD documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014 Project Tox.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

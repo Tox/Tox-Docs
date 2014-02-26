@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Core concepts &mdash; Tox API HEAD documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'HEAD',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Tox API HEAD documentation" href="index.html" />
+    <link rel="next" title="Developing With Tox" href="developing_with_tox.html" />
+    <link rel="prev" title="Welcome to the Tox developer documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="developing_with_tox.html" title="Developing With Tox"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the Tox developer documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Tox API HEAD documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="core-concepts">
+<h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-tox-id">
+<span id="core-concepts-public-keys"></span><h2>The Tox ID<a class="headerlink" href="#the-tox-id" title="Permalink to this headline">¶</a></h2>
+<div class="figure">
+<img alt="Something about a musty, deranged man who cackles out a string of random letters and numbers..." src="_images/public_key.png" />
+</div>
+<p>This is a typical Tox ID that you currently give out to friends.
+It is a public key, nospam value, and checksum concatenated
+in hexadecimal format. The result is the 76-character string
+shown above.</p>
+<div class="figure">
+<img alt="&gt; implying checksum" src="_images/public_key_bd.png" />
+</div>
+<p>(<em>The three parts of the a Tox ID.</em>)</p>
+<div class="section" id="public-key">
+<h3>Public Key<a class="headerlink" href="#public-key" title="Permalink to this headline">¶</a></h3>
+<p>The public key is generated from the <tt class="docutils literal"><span class="pre">crypto_box_keypair</span></tt> function
+by NaCL.</p>
+<p>This is explained better <a class="reference external" href="http://nacl.cr.yp.to/box.html">here</a>.
+In the current implementation of NaCL, it is 32 bytes (64 hexadecimal
+characters).</p>
+</div>
+<div class="section" id="nospam-value">
+<h3><tt class="docutils literal"><span class="pre">nospam</span></tt> Value<a class="headerlink" href="#nospam-value" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">nospam</span></tt> value is a randomly generated number appended to the
+key. A friend request sent without knowing the correct <tt class="docutils literal"><span class="pre">nospam</span></tt>
+value will be ignored.</p>
+<p>The <tt class="docutils literal"><span class="pre">nospam</span></tt> value van be changed at any time without affecting
+the public key, stopping all requests to your current ID. This makes
+it effective for fighting spam (its original purpose!).</p>
+</div>
+<div class="section" id="checksum">
+<h3>Checksum<a class="headerlink" href="#checksum" title="Permalink to this headline">¶</a></h3>
+<p>The checksum is a simple XOR checksum of the public key and
+<tt class="docutils literal"><span class="pre">nospam</span></tt> value. It is used to to quickly verify the integrity
+of the Tox ID.</p>
+</div>
+</div>
+<div class="section" id="up-by-the-bootstraps">
+<span id="core-concepts-up-by-the-bootstraps"></span><h2>Up By The Bootstraps<a class="headerlink" href="#up-by-the-bootstraps" title="Permalink to this headline">¶</a></h2>
+<p>Because Tox has no central servers, you will need to know someone
+who is already &#8220;in&#8221; the network before you can successfully
+connect your client.</p>
+<p>The Tox core handles this in one of two ways:</p>
+<ul class="simple">
+<li>Automatically bootstrapping to a Tox client that it finds
+on the LAN, and</li>
+<li>Bootstrapping to a known peer that your code provides.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is generally <em>not</em> a good idea to hardcode a bootstrap
+node as shown in the example code. There, it is hardcoded
+for brevity only.</p>
+</div>
+<p>Luckily for us, there is a list of well-known public Tox clients
+you can bootstrap against on the Tox wiki:
+<a class="reference external" href="http://wiki.tox.im/Nodes">http://wiki.tox.im/Nodes</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you would like that data in a more machine-friendly
+format, an unofficial JSON list is available
+<a class="reference external" href="https://kirara.ca/poison/Nodefile.json">here</a>,
+updated hourly from the wiki.
+Additionally, a script to scrape entries off the wiki
+is available
+<a class="reference external" href="https://github.com/Jman012/Tox-DHTservers-Updater">here</a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Core concepts</a><ul>
+<li><a class="reference internal" href="#the-tox-id">The Tox ID</a><ul>
+<li><a class="reference internal" href="#public-key">Public Key</a></li>
+<li><a class="reference internal" href="#nospam-value"><tt class="docutils literal"><span class="pre">nospam</span></tt> Value</a></li>
+<li><a class="reference internal" href="#checksum">Checksum</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#up-by-the-bootstraps">Up By The Bootstraps</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to the Tox developer documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="developing_with_tox.html"
+                        title="next chapter">Developing With Tox</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/core_concepts.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="developing_with_tox.html" title="Developing With Tox"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the Tox developer documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Tox API HEAD documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014 Project Tox.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
