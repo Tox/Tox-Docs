@@ -181,7 +181,6 @@ instead of a naïve loop.
 
 .. code-block:: c
 
-    #define SLEEP_TIME 50000
     #define BOOTSTRAP_ADDRESS "23.226.230.47"
     #define BOOTSTRAP_PORT 33445
     #define BOOTSTRAP_KEY "A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074"
@@ -212,7 +211,6 @@ instead of a naïve loop.
 
             tox_do(my_tox);
             ...
-            usleep(SLEEP_TIME);
         }
         ...
         tox_kill(my_tox);
