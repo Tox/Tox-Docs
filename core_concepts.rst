@@ -34,7 +34,7 @@ The ``nospam`` value is a randomly generated number appended to the
 key. A friend request sent without knowing the correct ``nospam``
 value will be ignored.
 
-The ``nospam`` value van be changed at any time without affecting
+The ``nospam`` value can be changed at any time without affecting
 the public key, stopping all requests to your current ID. This makes
 it effective for fighting spam (its original purpose!).
 
