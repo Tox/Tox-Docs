@@ -20,6 +20,7 @@ A list of available language wrappers for the Tox API:
 * `jToxcore <https://github.com/Tox/jToxcore>`_ *(Java)*
 * `DeepEnd <https://github.com/stal888/DeepEnd>`_ *(Objective-C)*
 * `PyTox <https://github.com/aitjcize/PyTox>`_ *(Python)*
+* `libtoxcore-racket <https://github.com/lehitoskin/libtoxcore-racket>`_ *(Racket)*
 
 .. warning::
    These may not be 1-1 wrappers of API functions. You should read
