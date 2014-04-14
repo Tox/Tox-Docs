@@ -2,8 +2,7 @@
 
 Getting Started With The C API
 ==============================
-The central flow of a Tox client application goes basically like this
-(highly simplified)
+To start with a brief example of how a C client structure should look is given, followed by each important section explained in more detail
 
 .. code-block:: c
 
@@ -18,76 +17,51 @@ The central flow of a Tox client application goes basically like this
        ...
    }
 
+   void MyFriendRequestCallback(Tox *tox, uint8_t * public_key, uint8_t * data, uint16_t length, void *userdata) {
+      ...
+   }
+
+   void MyFriendMessageCallback(Tox *tox, int friendnumber, uint8_t * message, uint32_t length, void *userdata) {
+      ...
+   }
+
+   ...
+
    int main(int argc, const char *argv[]) {
        uint8_t *pub_key = malloc(TOX_CLIENT_ID_SIZE);
        hex_string_to_bin(BOOTSTRAP_KEY, pub_key);
-
+      
        Tox *my_tox = tox_new(TOX_ENABLE_IPV6_DEFAULT);
-       tox_set_name(my_tox, MY_NAME, strlen(MY_NAME));
+       
+       /* Register the callbacks */
+       tox_callback_friend_request(my_tox, MyFriendRequestCallback, NULL);
+       tox_callback_friend_message(my_tox, MyFriendMessageCallback, NULL);
        ...
-       tox_bootstrap_from_address(my_tox, BOOTSTRAP_ADDRESS, TOX_ENABLE_IPV6_DEFAULT, BOOTSTRAP_PORT, pub_key);
+       
+       /* Define or load some user details for the sake of it */
+       tox_set_name(my_tox, MY_NAME, strlen(MY_NAME)); // Sets the username 
+       tox_set_status_message(my_tox, uint8_t *status, uint16_t length); // user status is pre-defined ints for "online", "offline" etc.
+       tox_set_user_status(my_tox, uint8_t userstatus); // status message is a string the user can set 
+       
        ...
+       
+       tox_bootstrap_from_address(my_tox, BOOTSTRAP_ADDRESS, TOX_ENABLE_IPV6_DEFAULT, BOOTSTRAP_PORT, pub_key); // connect to a bootstrap to get into the network
+       
+       ...
+       
        while (1) {
-           tox_do(my_tox);
+           tox_do(my_tox); // will call the callback functions defined and registered 
+           
            ...
-           usleep(SLEEP_TIME);
+           
+           usleep(SLEEP_TIME); // sleep for cpu usage, tox_wait() can be used instead for blocking
        }
+       
        ...
+       
        tox_kill(my_tox);
        return 0;
    }
-
-.. _getting_started_in_c/getting-into-the-network:
-
-Name And Identification
------------------------
-The first thing your client needs is a name. (*The Tox developers
-recommend names referencing harmful substances, such as Toxic,
-Poison, Venom, etc.*)
-
-But we're not talking that kind of name. We're talking about your
-Tox name, which gets shown to your friends and in group chats.
-
-You can, of course, set your name using the API function
-:ref:`api/tox_set_name`.
-
-You can also set your user status. This shows your friends what
-you are up to, and if you are busy, away, or available.
-
-The API for doing this is broken into two functions,
-:ref:`api/tox_set_status_message` and :ref:`api/tox_set_user_status`.
-
-.. note::
-   This was not shown in the sample code above.
-
-Getting Into The Network
-------------------------
-.. note::
-   You should read :ref:`core_concepts/up-by-the-bootstraps` to
-   learn more about bootstrapping.
-
-The C API provides two functions for dealing with bootstrapping.
-
-* :ref:`api/tox_bootstrap_from_address`
-
-You should call one of these as soon as you are finished preparing
-your ``Tox *`` object.
-
-.. _getting_started_in_c/lets-tox-do-it:
-
-Let's ``tox_do()`` It
----------------------
-The ``tox_do()`` function is the centre point of the Tox API.
-It encapsulates everything that is needed to retain a connection
-to the network in one function call.
-
-Your main loop must call ``tox_do()`` at least 20 times per second.
-In turn, ``tox_do()`` will invoke your registered callbacks.
-
-.. note::
-   This is rather inefficient, especially on low-power systems
-   such as smartphones. For a more efficient way of running
-   ``tox_do()``, see :ref:`getting_started_in_c/patience-is-a-virtue`.
 
 .. _getting_started_in_c/call-me-back-maybe:
 
@@ -123,16 +97,54 @@ signature of your callback function.*)
 Phew, that was a lot of functions! Don't worry, you only have
 to set callbacks for the events you want to receive.
 
+.. _getting_started_in_c/user-details:
+
+User Details
+-----------------------
+Clients should set the user details before connecting to a bootstrap. 
+
+The most essential detail needed is a username which is shown to the user's friends after having being connected to them
+
+``tox_set_name(my_tox, MY_NAME, strlen(MY_NAME));``
+
+As well as a username, you may also set a user status which defines their state of availability; online, offline, away and busy.
+These are part of an enumeration, TOX_USERSTATUS and not strings
+
+``tox_set_user_status(my_tox, uint8_t userstatus);``
+
+Lastly, a user can also have a status message which is a string
+
+``tox_set_status_message(my_tox, uint8_t *status, uint16_t length);``
+
+.. _getting_started_inc_/getting-into-the-network
+
+Getting Into The Network
+------------------------
 .. note::
-   This was not shown in the sample code above.
+   You should read :ref:`core_concepts/up-by-the-bootstraps` to
+   learn more about bootstrapping.
+
+Once you've registered your callbacks and set your user details, you now want to connect to a bootstrap to get into the network
+
+``tox_bootstrap_from_address(my_tox, BOOTSTRAP_ADDRESS, TOX_ENABLE_IPV6_DEFAULT, BOOTSTRAP_PORT, pub_key);``
+
+This function accepts both an IP and a hostname for the bootstrap address. You can also enable IPV6 by passing a non-zero
+value for ``TOX_ENABLE_IPV6_DEFAULT``
+
+.. _getting_started_in_c/lets-tox-do-it:
+
+Let's ``tox_do()`` It
+---------------------
+The ``tox_do()`` function is the centre point of the Tox API.
+It encapsulates everything that is needed to retain a connection
+to the network in one function call. Your main loop must call ``tox_do()`` at least 20 times per second.
+In turn, ``tox_do()`` will invoke your registered callbacks.
 
 .. _getting_started_in_c/patience-is-a-virtue:
 
 Wait For Events To Come To You
 ------------------------------
-I said earlier that calling ``tox_do()`` 20 times per second
-was inefficient. You really don't have to call it that many
-times per second, but what if something important happened?
+It can be very inefficient calling tox_do() 20 times a second, but what if something important happened?
 This is what ``tox_wait...`` was designed to fix. It works
 like POSIX ``select(2)``, so you can wait for something to
 happen on the Tox connection rather than poll for it.
@@ -150,8 +162,8 @@ Getting Ready
     uint8_t tox_wait_buffer = malloc(rtmp);
 
 ``tox_wait_execute()`` requires a buffer to perform its work.
-We use the ``tox_wait_prepare()`` function to get the required
-buffer size, which will be returned in ``rtmp``. Then, we just
+Use the ``tox_wait_prepare()`` function to get the required
+buffer size, which will be returned in ``rtmp``. Then, just
 ``malloc(rtmp)`` the right size.
 
 Doing The Work
@@ -176,8 +188,8 @@ it should be freed.
 
 Putting It All Together
 ^^^^^^^^^^^^^^^^^^^^^^^
-Here is our example program again, but using ``tox_wait...``
-instead of a naïve loop.
+Here is the example C program again, but using ``tox_wait...``
+instead of a naïve sleep loop.
 
 .. code-block:: c
 
@@ -190,6 +202,18 @@ instead of a naïve loop.
     void hex_string_to_bin(const char *in, uint8_t *out) {
         ...
     }
+
+    void hex_string_to_bin(const char *in, uint8_t *out) {
+       ...
+    }
+
+    void MyFriendRequestCallback(Tox *tox, uint8_t * public_key, uint8_t * data, uint16_t length, void *userdata) {
+      ...
+    }
+
+    void MyFriendMessageCallback(Tox *tox, int friendnumber, uint8_t * message, uint32_t length, void *userdata) {
+      ...
+    }   
 
     int main(int argc, const char *argv[]) {
         uint8_t *pub_key = malloc(TOX_CLIENT_ID_SIZE);
@@ -218,6 +242,5 @@ instead of a naïve loop.
     }
 
 .. note::
-   We don't actually need to allocate a new buffer every time we
-   call ``tox_wait_execute()``. Can you make the example code
-   reuse a single buffer?
+   You don't actually need to allocate a new buffer every time we
+   call ``tox_wait_execute()``.
