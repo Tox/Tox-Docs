@@ -2,8 +2,7 @@
 
 Getting Started With The C API
 ==============================
-The central flow of the client should be as follows, in Pseudo-Code and in C. Read further down the page for more 
-details on each essential part of these examples.
+To start with a brief example of how a C client structure should look is given, followed by each important section explained in more detail
 
 .. code-block:: c
 
