@@ -46,7 +46,7 @@ of the Tox ID.
 
 .. _core_concepts/up-by-the-bootstraps:
 
-Up By The Bootstraps
+Connecting to the network
 --------------------
 Because Tox has no central servers, you will need to know someone
 who is already "in" the network before you can successfully
