@@ -28,8 +28,8 @@ Table of Contents
 Tutorials and Examples
 ----------------------
 
-Full API reference
+API reference
 ------------------
 
-* tox.h
-* toxav.h
+`toxcore <http://api.libtoxcore.so/api/tox_8h.html>`_
+`toxav <http://api.libtoxcore.so/api/toxav_8h.html>`_
