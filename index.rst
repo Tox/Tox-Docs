@@ -31,5 +31,5 @@ Tutorials and Examples
 API reference
 ------------------
 
-`toxcore <http://api.libtoxcore.so/api/tox_8h.html>`_
-`toxav <http://api.libtoxcore.so/api/toxav_8h.html>`_
+* `toxcore <http://api.libtoxcore.so/api/tox_8h.html>`_
+* `toxav <http://api.libtoxcore.so/api/toxav_8h.html>`_
