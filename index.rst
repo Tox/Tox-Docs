@@ -12,7 +12,7 @@ Who should read this documentation?
 This documentation is intended for **developers** who want to make
 applications based on the Tox messenger core. If you just want to use
 Tox, downloads of clients are available
-`on the main site <http://wiki.tox.im/Binaries>`_.
+`on the main site <https://wiki.tox.im/Binaries>`_.
 
 With that out of the way, let's dive in!
 

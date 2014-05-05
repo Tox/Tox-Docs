@@ -65,7 +65,7 @@ The Tox core handles this in one of two ways:
 
 Luckily for us, there is a list of well-known public Tox clients
 you can bootstrap against on the Tox wiki:
-http://wiki.tox.im/Nodes.
+https://wiki.tox.im/Nodes.
 
 .. note::
    If you would like that data in a more machine-friendly
