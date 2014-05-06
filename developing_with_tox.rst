@@ -22,6 +22,7 @@ A list of available language wrappers for the Tox API:
 * `PyTox <https://github.com/aitjcize/PyTox>`_ *(Python)*
 * `libtoxcore-racket <https://github.com/lehitoskin/libtoxcore-racket>`_ *(Racket)*
 * `haskell-tox-core <https://github.com/ollieh/haskell-tox-core>`_ *(Haskell)*
+* `SharpTox <https://github.com/Impyy/SharpTox>`_ *(C#)*
 
 .. warning::
    These may not be 1-1 wrappers of API functions. You should read
