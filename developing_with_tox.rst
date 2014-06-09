@@ -24,6 +24,7 @@ A list of available language wrappers for the Tox API:
 * `haskell-tox-core <https://github.com/ollieh/haskell-tox-core>`_ *(Haskell)*
 * `SharpTox <https://github.com/Impyy/SharpTox>`_ *(C#)*
 * `golibtox <https://github.com/organ/golibtox/>`_ *(Go)*
+* `luatox <https://github.com/peersuasive/luatox/>`_ *(Lua)*
 
 .. warning::
    These may not be 1-1 wrappers of API functions. You should read
