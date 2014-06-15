@@ -33,3 +33,4 @@ API reference
 
 * `toxcore <https://libtoxcore.so/api/tox_8h.html>`_
 * `toxav <https://libtoxcore.so/api/toxav_8h.html>`_
+* `toxdns <https://libtoxcore.so/api/toxdns_8h.html>`_
