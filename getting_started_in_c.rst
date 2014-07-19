@@ -39,10 +39,10 @@ To start with a brief example of how a C client structure should look is given, 
        ...
        
        /* Define or load some user details for the sake of it */
-       tox_set_name(my_tox, MY_NAME, strlen(MY_NAME)); // Sets the username 
-       tox_set_status_message(my_tox, uint8_t *status, uint16_t length); // user status is pre-defined ints for "online", "offline" etc.
-       tox_set_user_status(my_tox, uint8_t userstatus); // status message is a string the user can set 
-       
+       tox_set_name(my_tox, MY_NAME, strlen(MY_NAME)); // Sets the username
+       tox_set_status_message(my_tox, uint8_t *status, uint16_t length); // status message is a string the user can set
+       tox_set_user_status(my_tox, uint8_t userstatus); // user status is pre-defined ints for "online", "offline" etc.
+
        ...
        
        tox_bootstrap_from_address(my_tox, BOOTSTRAP_ADDRESS, TOX_ENABLE_IPV6_DEFAULT, BOOTSTRAP_PORT, pub_key); // connect to a bootstrap to get into the network
