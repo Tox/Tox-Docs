@@ -6,6 +6,18 @@ At its heart it's a client dealing with our core library communicating on our ow
 
 Tox is powered by a distributed network who uses P2P connections for chats between people, unlike other Skype replacements no federated servers, centralized servers, or supernodes are used.
 
+Contributing
+------------
+Know how to code? Our client developers appreciate all the help they can get, please scroll down to the section for developers.
+
+The following are other ways non developers can contribute to the project
+
+* Helping with translations
+
+* Donating to help fund development
+
+* Asking your friends and family to Tox you
+
 For users
 ---------
 Tox is currently in Alpha and we hope you report any bugs you may see
