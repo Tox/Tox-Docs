@@ -31,8 +31,12 @@ Security considerations with commiting (And more on pgp)
 `Technical report <https://tox.im/tox.pdf>`_ (Unfinished)
 
 API reference
-------------------
+-------------
 
 * `toxcore <https://libtoxcore.so/api/tox_8h.html>`_
 * `toxav <https://libtoxcore.so/api/toxav_8h.html>`_
 * `toxdns <https://libtoxcore.so/api/toxdns_8h.html>`_
+
+Edit this site
+--------------
+This site is open source and open for contributions, its source is `here <https://github.com/Tox/Tox-Docs>`_
