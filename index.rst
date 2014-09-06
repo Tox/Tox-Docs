@@ -12,7 +12,7 @@ Tox is currently in Alpha and we hope you report any bugs you may see.
 
 You can download a Tox client `here <https://wiki.tox.im/Binaries>`_, or you can learn how to compile one below.
 
-Find a bug? report it `here <https://support.tox.im>`_,
+Find a bug? report it `here <https://support.tox.im>`_
 
 Need help with Tox? Send an email to support@tox.im
 
