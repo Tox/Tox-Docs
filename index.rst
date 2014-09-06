@@ -6,11 +6,13 @@
 Welcome to the Tox Developer site!
 ===========================================
 Tox is a secure and distributed Skype replacement.
+
 At its heart it's a client dealing with our core library communicating on our own protocol. All communications are encrypted using ``NaCl`` and can this encryption can not be turned off.
 
 For users
 ---------
 Need help with Tox? Send an email to support@tox.im
+
 Want to give us feedback? Send an email to comments@tox.im
 
 For developers
