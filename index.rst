@@ -8,9 +8,9 @@ Tox is powered by a distributed network who uses P2P connections for chats betwe
 
 For users
 ---------
-Tox is currently in Alpha and we hope you report any bugs you may see.
+Tox is currently in Alpha and we hope you report any bugs you may see
 
-You can download a Tox client `here <https://wiki.tox.im/Binaries>`_, or you can learn how to compile one below.
+You can download a Tox client `here <https://wiki.tox.im/Binaries>`_, or you can learn how to compile one below
 
 Find a bug? report it `here <https://support.tox.im>`_
 
@@ -20,15 +20,15 @@ Want to give us feedback? Send an email to comments@tox.im
 
 For developers
 --------------
-Compiling Tox for the first time
+`Compiling Tox for the first time <compiling.html>`_
 
 `Developing your first client <dev.html>`_ (Warning, outdated)
 
 Security considerations with commiting (And more on pgp)
 
-How Jenkins and our nightly builds work
+`How Jenkins and our nightly builds work <jenkins.html>`_
 
-`Technical report <https://tox.im/tox.pdf>`_ (Warning, outdated)
+`Technical report <https://tox.im/tox.pdf>`_ (Unfinished)
 
 API reference
 ------------------
