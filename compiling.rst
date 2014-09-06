@@ -1,6 +1,7 @@
 Compiling Tox
 =============
 In order to compile Tox you'll need to do the following:
+
 * compile all build requirements
 * compile the core libraries
 * compile a client
@@ -8,9 +9,11 @@ In order to compile Tox you'll need to do the following:
 Compile all build requirements
 ------------------------------
 Toxcore itself requires the following libraries:
+
 * libsodium or NaCl
 
 Toxav requires the following libraries:
+
 * opus
 * vpx
 
