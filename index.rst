@@ -3,30 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Tox developer documentation!
+Welcome to the Tox Developer site!
 ===========================================
-This is the API for Tox, a secure and decentralized messaging network.
+Tox is a secure and distributed Skype replacement.
+At its heart it's a client dealing with our core library communicating on our own protocol. All communications are encrypted using ``NaCl`` and can this encryption can not be turned off.
 
-Who should read this documentation?
------------------------------------
-This documentation is intended for **developers** who want to make
-applications based on the Tox messenger core. If you just want to use
-Tox, downloads of clients are available
-`on the main site <https://wiki.tox.im/Binaries>`_.
+For users
+---------
+Need help with Tox? Send an email to support@tox.im
+Want to give us feedback? Send an email to comments@tox.im
 
-With that out of the way, let's dive in!
-
-Table of Contents
------------------
-.. toctree::
-   :maxdepth: 2
-   
-   core_concepts
-   developing_with_tox
-   getting_started_in_c
-
-Tutorials and Examples
-----------------------
+For developers
+--------------
 
 API reference
 ------------------
