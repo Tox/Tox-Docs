@@ -28,6 +28,8 @@ Security considerations with commiting (And more on pgp)
 
 How Jenkins and our nightly builds work
 
+`Technical report <https://tox.im/tox.pdf>`_ (Warning, outdated)
+
 API reference
 ------------------
 
