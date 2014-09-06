@@ -1,16 +1,19 @@
-.. Project Tox documentation master file, created by
-   sphinx-quickstart on Mon Feb 24 17:16:52 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to the Tox Developer site!
 ===========================================
 Tox is a secure and distributed Skype replacement.
 
-At its heart it's a client dealing with our core library communicating on our own protocol. All communications are encrypted using ``NaCl`` and can this encryption can not be turned off.
+At its heart it's a client dealing with our core library communicating on our own protocol. All communications are encrypted using the peer audited ``NaCl`` cypto library and can this encryption can not be turned off.
+
+Tox is powered by a distributed network who uses P2P connections for chats between people, unlike other Skype replacements no federated servers, centralized servers, or supernodes are used.
 
 For users
 ---------
+Tox is currently in Alpha and we hope you report any bugs you may see.
+
+You can download a Tox client `here <https://wiki.tox.im/Binaries>`_.
+
+Instructions for compiling it yourself are in the developers section.
+
 Need help with Tox? Send an email to support@tox.im
 
 Want to give us feedback? Send an email to comments@tox.im
