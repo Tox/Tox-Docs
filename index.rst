@@ -10,9 +10,7 @@ For users
 ---------
 Tox is currently in Alpha and we hope you report any bugs you may see.
 
-You can download a Tox client `here <https://wiki.tox.im/Binaries>`_.
-
-Instructions for compiling it yourself are in the developers section.
+You can download a Tox client `here <https://wiki.tox.im/Binaries>`_., or you can learn how to compile one below.
 
 Need help with Tox? Send an email to support@tox.im
 
