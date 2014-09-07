@@ -10,12 +10,14 @@ Compile all build requirements
 ------------------------------
 Toxcore itself requires the following libraries:
 
-* libsodium or NaCl
+* `libsodium <http://doc.libsodium.org/installation/README.html>`_ or `NaCl <http://nacl.cr.yp.to/install.html>`_
 
 Toxav requires the following libraries:
 
-* opus
-* vpx
+* libopus
+* libvpx
+
+Both of these libraries can be installed using the instructions `here <https://github.com/irungentoo/toxcore/blob/master/INSTALL.md#libtoxav>`_ 
 
 Compile the core libraries
 --------------------------
