@@ -61,7 +61,7 @@ The Tox core handles this in one of two ways:
 .. note::
    If you would like that data in a more machine-friendly
    format, an unofficial JSON list is available
-   `here <https://kirara.ca/poison/Nodefile.json>`__,
+   `here <https://dist-build.tox.im/Nodefile.json>`__,
    updated hourly from the wiki.
    Additionally, a script to scrape entries off the wiki
    is available
