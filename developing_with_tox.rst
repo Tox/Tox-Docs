@@ -26,6 +26,8 @@ A list of available language wrappers for the Tox API:
 * `golibtox <https://github.com/organ/golibtox/>`_ *(Go)*
 * `luatox <https://github.com/peersuasive/luatox/>`_ *(Lua)*
 * `guile-toxcore <https://gitorious.org/guile-toxcore/guile-toxcore/>`_ *(Guile)*
+* `rust-tox <https://github.com/mahkoh/rust-tox/>`_ *(Rust)*
+
 
 
 .. warning::
