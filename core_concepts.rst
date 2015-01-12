@@ -21,12 +21,16 @@ shown above.
 
 Public Key
 ^^^^^^^^^^
-The public key is generated from the ``crypto_box_keypair`` function
+The public key is internally generated from the ``crypto_box_keypair`` function
 by NaCl.
 
 This is explained better `here <http://nacl.cr.yp.to/box.html>`__.
 In the current implementation of NaCl, it is 32 bytes (64 hexadecimal
 characters).
+
+In practice, libtoxcore.so generates a new random public/private keypair during 
+initialization and it's up to you to save this identity (tox_save()) or replace it
+with a previously saved one (tox_load())
 
 ``nospam`` Value
 ^^^^^^^^^^^^^^^^
