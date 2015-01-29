@@ -4,13 +4,13 @@ Tox is a secure and distributed Skype replacement.
 
 At its heart it's a client dealing with our core library communicating on our own protocol. All communications are encrypted using the peer audited ``NaCl`` crypto library and this encryption can not be turned off.
 
-Tox is powered by a distributed network which uses P2P connections for chats between people, unlike other Skype replacements no federated servers, centralized servers, or supernodes are used.
+Tox is powered by a distributed network which uses P2P connections for chats between people, and unlike other Skype replacements, no federated servers, centralized servers, or supernodes are used.
 
 Contributing
 ------------
-Know how to code? Our client developers appreciate all the help they can get, please scroll down to the section for developers.
+Know how to code? Our client developers appreciate all the help they can get. Please scroll down to the section for developers.
 
-The following are other ways non developers can contribute to the project
+The following are other ways non-developers can contribute to the project:
 
 * Helping with translations
 
@@ -20,11 +20,11 @@ The following are other ways non developers can contribute to the project
 
 For users
 ---------
-Tox is currently in Alpha and we hope you report any bugs you may see
+Tox is currently in Alpha and we hope you report any bugs you may see.
 
-You can download a Tox client `here <https://wiki.tox.im/Binaries>`_, or you can learn how to compile one below
+You can download a Tox client `here <https://wiki.tox.im/Binaries>`_, or you can learn how to compile one below.
 
-Find a bug? report it `here <https://support.tox.im>`_
+Find a bug? Report it `here <https://support.tox.im>`_
 
 Need help with Tox? Send an email to support@tox.im
 
@@ -51,4 +51,4 @@ API reference
 
 Edit this site
 --------------
-This site is open source and open for contributions, its source is `here <https://github.com/Tox/Tox-Docs>`_
+This site is open source and open for contributions. The source is `here <https://github.com/Tox/Tox-Docs>`_.
