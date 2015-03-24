@@ -34,7 +34,7 @@ For developers
 --------------
 `Compiling Tox for the first time <compiling.html>`_
 
-`Developing your first client <dev.html>`_ (Warning, outdated)
+`Developing your first client <dev.html>`_ 
 
 Security considerations with commiting (And more on pgp)
 
