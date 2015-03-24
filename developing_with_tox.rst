@@ -5,13 +5,12 @@ Developing With Tox
 
 "C" Is For Core
 ---------------
-The core of Tox is written in C. Don't know a lick of C? Heard horror
-stories of C programs eating children?
+The core of Tox is written in C. Don't know a lick of C?
 Don't worry, that won't preclude you from using the Tox API.
 
-.. _developing_with_tox/shrek:
+.. _developing_with_tox/wrappers:
 
-Like An Ogre, Tox Has Many [Wrappers]
+Tox has API wrappers in many languages
 -------------------------------------
 API bindings/wrappers are available for users of high-level languages
 so they too can use the Tox API.
@@ -36,7 +35,6 @@ A list of available language wrappers for the Tox API:
    These may not be 1-1 wrappers of API functions. You should read
    the documentation of your chosen wrapper for usage details.
 
-You're Seriously Going To Write C, Then
+Getting started in C
 ---------------------------------------
-Good, C is a good language. The next topic will cover the basics
-of your application's main Tox loop.
+It's often easier to get to know the API in C to better understand it without wrapper abstractions.
