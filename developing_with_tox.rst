@@ -26,7 +26,7 @@ A list of available language wrappers for the Tox API:
 * `SharpTox <https://github.com/Impyy/SharpTox>`_ *(C#)*
 * `golibtox <https://github.com/organ/golibtox/>`_ *(Go)*
 * `luatox <https://github.com/peersuasive/luatox/>`_ *(Lua)*
-* `guile-toxcore <https://gitorious.org/guile-toxcore/guile-toxcore/>`_ *(Guile)*
+* `guile-toxcore <https://github.com/urras/guile-toxcore>`_ *(Guile)*
 * `rust-tox <https://github.com/mahkoh/rust-tox/>`_ *(Rust)*
 * `node-toxcore <https://github.com/saneki/node-toxcore>`_ *(Javascript)*
 
