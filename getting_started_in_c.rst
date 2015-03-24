@@ -18,22 +18,22 @@ To start with a brief example of how a C client structure should look is given, 
        ...
    }
 
-   void MyFriendRequestCallback(Tox *tox, uint8_t * public_key, uint8_t * data, uint16_t length, void *userdata) {
+   void MyFriendRequestCallback(Tox *tox, const uint8_t *public_key, const uint8_t *message, size_t length, void *user_data) {
       ...
    }
 
-   void MyFriendMessageCallback(Tox *tox, int friendnumber, uint8_t * message, uint32_t length, void *userdata) {
+   void MyFriendMessageCallback(Tox *tox, uint32_t friend_number, TOX_MESSAGE_TYPE type, const uint8_t *message, size_t length, void *user_data) {
       ...
    }
 
    ...
 
    int main(int argc, const char *argv[]) {
-       uint8_t *bootstrap_pub_key = malloc(TOX_CLIENT_ID_SIZE);
+       uint8_t *bootstrap_pub_key = malloc(TOX_PUBLIC_KEY_SIZE);
        hex_string_to_bin(BOOTSTRAP_KEY, bootstrap_pub_key);
 
        /* Create a default Tox */
-       Tox *my_tox = tox_new(NULL);
+       Tox *my_tox = tox_new(NULL, NULL, 0, NULL);
 
        /* Register the callbacks */
        tox_callback_friend_request(my_tox, MyFriendRequestCallback, NULL);
@@ -42,26 +42,26 @@ To start with a brief example of how a C client structure should look is given, 
        ...
 
        /* Define or load some user details for the sake of it */
-       tox_set_name(my_tox, MY_NAME, strlen(MY_NAME)); // Sets the username
-       tox_set_status_message(my_tox, MY_STATUS_MESSAGE, strlen(MY_STATUS_MESSAGE)); // Sets the status message
+       tox_self_set_name(my_tox, MY_NAME, strlen(MY_NAME), NULL); // Sets the username
+       tox_self_set_status_message(my_tox, MY_STATUS_MESSAGE, strlen(MY_STATUS_MESSAGE), NULL); // Sets the status message
 
-       /* Set the user status to TOX_USERSTATUS_NONE. Other possible values:
-          TOX_USERSTATUS_AWAY, TOX_USERSTATUS_BUSY, TOX_USERSTATUS_INVALID */
-       tox_set_user_status(my_tox, TOX_USERSTATUS_NONE);
+       /* Set the user status to TOX_USER_STATUS_NONE. Other possible values:
+          TOX_USER_STATUS_AWAY and TOX_USER_STATUS_BUSY */
+       tox_self_set_status(my_tox, TOX_USER_STATUS_NONE);
 
        ...
 
        /* Bootstrap from the node defined above */
-       tox_bootstrap_from_address(my_tox, BOOTSTRAP_ADDRESS, BOOTSTRAP_PORT, bootstrap_pub_key);
+       tox_bootstrap(my_tox, BOOTSTRAP_ADDRESS, BOOTSTRAP_PORT, bootstrap_pub_key, NULL);
 
        ...
 
        while (1) {
-           tox_do(my_tox); // will call the callback functions defined and registered 
+           tox_iterate(my_tox); // will call the callback functions defined and registered 
 
            ...
 
-           usleep(SLEEP_TIME); // sleep for cpu usage, tox_wait() can be used instead for blocking
+           usleep(tox_iteration_interval(my_tox)); // sleep until the next iteration should happen
        }
 
        ...
