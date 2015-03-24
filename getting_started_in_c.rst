@@ -77,35 +77,30 @@ Call Me [Back] Maybe
 .. figure:: _static/tox_loop.png
    :alt: The circle of life.
 
-When important events happen on the Tox connection, tox_do will
+When important events happen on the Tox connection, tox_iterate will
 invoke callbacks that you specify with the following API
 functions.
 
-* :ref:`api/tox_callback_friend_request`
-* :ref:`api/tox_callback_friend_message`
-* :ref:`api/tox_callback_friend_action`
-* :ref:`api/tox_callback_name_change`
-* :ref:`api/tox_callback_status_message`
-* :ref:`api/tox_callback_user_status`
-* :ref:`api/tox_callback_typing_change`
-* :ref:`api/tox_callback_read_receipt`
-* :ref:`api/tox_callback_connection_status`
-* :ref:`api/tox_callback_group_invite`
-* :ref:`api/tox_callback_group_message`
-* :ref:`api/tox_callback_group_action`
-* :ref:`api/tox_callback_group_title`
-* :ref:`api/tox_callback_group_namelist_change`
-* :ref:`api/tox_callback_avatar_info`
-* :ref:`api/tox_callback_avatar_data`
-* :ref:`api/tox_callback_file_send_request`
-* :ref:`api/tox_callback_file_control`
-* :ref:`api/tox_callback_file_data`
+* `tox_callback_self_connection_status <https://libtoxcore.so/api/tox_8h.html#ab38a7512be865980d45819a3ab7e5e5a>`_
+* `tox_callback_friend_name <https://libtoxcore.so/api/tox_8h.html#a09d71ba40072133d03da17422dd06bf0>`_
+* `tox_callback_friend_status_message <https://libtoxcore.so/api/tox_8h.html#aac5e8d3bef2a458e0e287a2de7cf9604>`_
+* `tox_callback_friend_status <https://libtoxcore.so/api/tox_8h.html#ad1878862d94e2c2ba1d51e761b02efae>`_
+* `tox_callback_friend_connection_status <https://libtoxcore.so/api/tox_8h.html#aa7d891aaf1f15ee03f55b66227744157>`_
+* `tox_callback_friend_typing <https://libtoxcore.so/api/tox_8h.html#acca76b201e0c38c871f3913f1ae99a07>`_
+* `tox_callback_friend_read_receipt <https://libtoxcore.so/api/tox_8h.html#aafcb609f32feff42d9bc9ded9f771931>`_
+* `tox_callback_friend_request <https://libtoxcore.so/api/tox_8h.html#a2cf9a901fd5db3b6635a3ece389cc349>`_
+* `tox_callback_friend_message <https://libtoxcore.so/api/tox_8h.html#a31635691f5ee3ee6ee061215d18087ae>`_
+* `tox_callback_file_recv_control <https://libtoxcore.so/api/tox_8h.html#abb0eca9253a594357dfa0da0c9c64a0d>`_
+* `tox_callback_file_chunk_request <https://libtoxcore.so/api/tox_8h.html#ade12d3a935a20a1e2a87afa1799343a9>`_
+* `tox_callback_file_recv <https://libtoxcore.so/api/tox_8h.html#a2838aa05de2c47f58a45645248303b60>`_
+* `tox_callback_file_recv_chunk <https://libtoxcore.so/api/tox_8h.html#ad828f18b7b4901f258fe7132b1bec4f6>`_
+* `tox_callback_friend_lossy_packet <https://libtoxcore.so/api/tox_8h.html#a17c90611298a86c1d132fdfb5aa52e00>`_
+* `tox_callback_friend_lossless_packet <https://libtoxcore.so/api/tox_8h.html#a4394a6985e8d6d652894b89211a8062e>`_
 
 (*Click on a setter function above to see the required function
 signature of your callback function.*)
 
-Phew, that was a lot of functions! Don't worry, you only have
-to set callbacks for the events you want to receive.
+Phew, that was a lot of functions! Don't worry, you only have to set callbacks for the events you want to receive.
 
 .. _getting_started_in_c/user-details:
 
@@ -115,16 +110,16 @@ Clients should set the user details before connecting to a bootstrap.
 
 The most essential detail needed is a username which is shown to the user's friends after having connected to them
 
-``tox_set_name(my_tox, MY_NAME, strlen(MY_NAME));``
+``tox_self_set_name(my_tox, MY_NAME, strlen(MY_NAME), TOX_ERR_SET_INFO *error);``
 
 As well as a username, you may also set a user status which defines their state of availability; online, offline, away and busy.
-These are part of an enumeration, TOX_USERSTATUS and not strings
+These are part of an enumeration, TOX_USER_STATUS and not strings
 
-``tox_set_user_status(my_tox, uint8_t userstatus);``
+``tox_set_status(my_tox, uint8_t userstatus);``
 
 Lastly, a user can also have a status message which is a string
 
-``tox_set_status_message(my_tox, uint8_t *status, uint16_t length);``
+``tox_self_set_status_message(my_tox, uint8_t *status, uint16_t length, TOX_ERR_SET_INFO *error);``
 
 .. _getting_started_inc_/getting-into-the-network
 
@@ -142,9 +137,9 @@ This function accepts both an IP and a hostname for the bootstrap address.
 
 .. _getting_started_in_c/lets-tox-do-it:
 
-Let's ``tox_do()`` It
+Let's ``tox_iterate()`` over it
 ---------------------
-The ``tox_do()`` function is the centre point of the Tox API.
-It encapsulates everything that is needed to retain a connection
-to the network in one function call. Your main loop must call ``tox_do()`` at least 20 times per second.
-In turn, ``tox_do()`` will invoke your registered callbacks.
+The ``tox_iterate()`` function is the centre point of the Tox API.
+It encapsulates everything that is needed to retain a connection to the network in one function call.
+Your main loop should call ``tox_iterate()`` in the interval that is given by ``tox_iteration_interval()``.
+In turn, ``tox_iterate()`` will invoke your registered callbacks.
