@@ -1,6 +1,6 @@
 Jenkins CI
 ===========================================
-Jenkins is our cross platform/architecture build system, it deals with Windows libraries on Fedora boxes to Qt on OS X boxes, and everything in between.
+`Jenkins <https://jenkins.libtoxcore.so>`_ is our cross platform/architecture build system, it deals with Windows libraries on Fedora boxes to Qt on OS X boxes, and everything in between
 
 What does Jenkins do?
 ---------------------

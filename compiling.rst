@@ -29,10 +29,8 @@ Compile a client
 ----------------
 Next you'll need to compile a client, they are listed `here <https://wiki.tox.im/Clients>`_
 
-`qTox <https://github.com/tux3/qTox#compiling-on-gnu-linux>`_ is a graphical, cross-platform client written for the Toxcore by Tux3 in C++ using QT. 
+`qTox <https://github.com/tux3/qTox#compiling-on-gnu-linux>`_ is a graphical, cross-platform client written for the Toxcore by Tux3 in C++ using QT.
 
 `Toxic <https://github.com/Tox/toxic#installation>`_ is a CLI client for UNIX-like operating systems that uses Ncurses.
-
-`Venom <https://github.com/naxuroqa/Venom/blob/master/INSTALL.md>`_ is a graphical, cross-platform client written in Vala using GTK+.
 
 `uTox <https://github.com/notsecure/uTox/blob/master/INSTALL.md>`_ is a graphical, cross-platform client written by notsecure.

@@ -36,7 +36,7 @@ For developers
 
 `Developing your first client <dev.html>`_ 
 
-Security considerations with commiting (And more on pgp)
+Security considerations with committing (And more on PGP)
 
 `How Jenkins and our nightly builds work <jenkins.html>`_
 

@@ -1,6 +1,6 @@
 Tox developer documentation
 ===========================
-it's tox developer documentation what did you expect some kind of tomato kyouko
+It's tox developer documentation what did you expect some kind of tomato kyouko
 
 TODO
 ====
