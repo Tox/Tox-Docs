@@ -61,7 +61,7 @@ To start with a brief example of how a C client structure should look is given, 
 
            ...
 
-           usleep(tox_iteration_interval(my_tox)); // sleep until the next iteration should happen
+           usleep(tox_iteration_interval(my_tox) * 1000); // sleep until the next iteration should happen
        }
 
        ...
