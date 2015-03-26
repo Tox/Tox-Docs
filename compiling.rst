@@ -33,4 +33,4 @@ Next you'll need to compile a client, they are listed `here <https://wiki.tox.im
 
 `Toxic <https://github.com/Tox/toxic#installation>`_ is a CLI client for UNIX-like operating systems that uses Ncurses.
 
-`uTox <https://github.com/notsecure/uTox/blob/master/INSTALL.md>`_ is a graphical, cross-platform client written by notsecure.
+`uTox <https://github.com/notsecure/wintox/blob/master/docs/INSTALL.md>`_ is a graphical, cross-platform client written by notsecure.
