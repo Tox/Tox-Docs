@@ -20,7 +20,6 @@ A list of available language wrappers for the Tox API:
 * `libtoxcore-racket <https://github.com/lehitoskin/libtoxcore-racket>`_ *(Racket)*
 * `SharpTox <https://github.com/Impyy/SharpTox>`_ *(C#)*
 * `golibtox <https://github.com/codedust/go-tox>`_ *(Go)*
-* `luatox <https://github.com/peersuasive/luatox/>`_ *(Lua)*
 * `node-toxcore <https://github.com/saneki/node-toxcore>`_ *(Javascript)*
 
 .. warning::
@@ -37,4 +36,5 @@ Outdated wrappers
 * `PyTox <https://github.com/aitjcize/PyTox>`_ *(Python)*
 * `haskell-tox-core <https://github.com/ollieh/haskell-tox-core>`_ *(Haskell)*
 * `guile-toxcore <https://github.com/urras/guile-toxcore>`_ *(Guile)*
+* `luatox <https://github.com/peersuasive/luatox/>`_ *(Lua)*
 * `rust-tox <https://github.com/mahkoh/rust-tox/>`_ *(Rust)*
