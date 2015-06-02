@@ -16,11 +16,12 @@ API bindings/wrappers are available for users of high-level languages
 so they too can use the Tox API.
 A list of available language wrappers for the Tox API:
 
-* `Tox4j <https://github.com/tox4j/tox4j>`_ *(Java)*
-* `libtoxcore-racket <https://github.com/lehitoskin/libtoxcore-racket>`_ *(Racket)*
 * `SharpTox <https://github.com/Impyy/SharpTox>`_ *(C#)*
 * `golibtox <https://github.com/codedust/go-tox>`_ *(Go)*
+* `Tox4j <https://github.com/tox4j/tox4j>`_ *(Java)*
 * `node-toxcore <https://github.com/saneki/node-toxcore>`_ *(Javascript)*
+* `libtoxcore-racket <https://github.com/lehitoskin/libtoxcore-racket>`_ *(Racket)*
+* `rstox <https://github.com/suhr/rstox/>`_ *(Rust)*
 
 .. warning::
    These may not be 1-1 wrappers of API functions. You should read
